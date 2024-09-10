@@ -29,6 +29,11 @@ methods: {
     showFav(data){
       data.isFav =!data.isFav 
     }
+  },
+  computed:{
+filteredBooks(){
+  return this.books.filter((book) => book.isFav)
+}
   }
 })
 
