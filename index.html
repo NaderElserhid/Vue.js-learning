@@ -5,18 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<style>
+    body {
+        background: #eee;
+        max-width: 960px;
+        margin: 20px auto;
+    }
+    p, h3, ul{
+      margin: 0;
+      padding: 0;
+    }
+    .box{
+        padding: 100px 0; 
+        width: 400px;
+        background: #ddd;
+        margin: 20px;
+        display: inline-block;
+    }
+    li{
+      list-style-type: none;
+      background: #fff;
+      margin: 20px auto;
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    li.fav{
+      background: #ff9ed2;
+      color: white;
+    }
+</style>
 </head>
 <body>
     <div id="app">
-        <div v-if="showBook">
-            <p> {{title}} - {{lastName}} - {{age}}</p>
-        </div>
 
-        <button @click="toggleShowBooks">
+        <ul v-if="showBook">
+            <li v-for="book in books" :class="{fav: book.isFav}"  @click="showFav(book)">
+                <img :src="book.img" alt="book.title">
+         <h3>{{book.title}} </h3>
+         <p>- {{book.author}} </p>
+         <p>- {{book.date}} </p>
+            </li>
+        </ul>
+                <button @click="toggleShowBooks">
             <span v-if="showBook">Hide Books  </span>
             <span v-else>show Books</span>
         </button>
+
+<br>
+ <div class="box" @mousemove="handlemove">  posation is  {{y}} - {{x}} </div>
     </div>
+    
     <script src="app.js"></script>
 </body>
 </html>
